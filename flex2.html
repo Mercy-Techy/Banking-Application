@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./fontawesome-free-5.15.3-web/css/all.css">
+</head>
+<body class="d-flex justify-content-center align-items-center flex-column" style="height:100vh">
+    <div class="bg-light p-3 modal dell shadow rounded">
+        <div class="display-6 fw-bold"><span>Wallet</span><span class="time" onclick="times()">&times;</span></div>
+         <div class="my-3">
+            <h5 class="fw-bold">Savings Tittle</h5>
+            <input placeholder="Enter Amount"  type="number" id="amount" class="input border-0 w-75 px-2 py-3 rounded d-block">
+            <select class="input border-0 w-75 px-2 py-3 my-3 rounded d-block" id="select" >
+                <option value="">Daily</option>
+                <option value="">Weekly</option>
+                <option value="">Monthly</option>
+            </select> 
+            <button class="btn btn-info my-2 text-light fw-bold" onclick="ren()">Submit</button>
+            </div>
+       </div>
+    </div>
+
+
+
+    <div class="bg-light py-5 whale shadow rounded" id="opac">
+        <div class="d-flex justify-content-center my-2 align-items-center flex-column">
+            <i class="fas fa-user"></i>
+            <p class="display-6 text-muted text-center" style="font-size: 2rem;">Hello <br><span class="act"></span></p>
+        </div>
+        <div class="bg-white shadow-sm py-2">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <span class="text-muted">Account Balance</span>
+                <span class="display-6 fw-bold">&#x20A6<span class="save"></span></span>
+            </div>
+        </div>
+            <div class="mx-2 text-center">
+                <a href="./index.html" class="btn btn-info fw-bold my-3 shadow-sm text-light">Main Menu</a>
+                <button class="btn btn-info text-light fw-bold" onclick="model()">Wallet save</button>
+            </div>
+        </div>
+            <div id="talk" class="bg-light dell shadow rounded">
+                <div class="display-6 fw-bold">
+                   <span class="mb">Saving History</span><span class="timex" onclick="timer()">&times;</span>
+                </div>
+            </div>
+    <script>
+         let nam = localStorage.getItem("presentName")
+         document.querySelector(".act").innerHTML = nam
+            let customer =  nam + " " + "balance"
+            let cust =  nam + " " + "wallet"
+        function model(){
+           let modal =  document.querySelector(".modal")
+           let opac = document.getElementById("opac")
+           modal.style.display = "block"
+           opac.style.opacity = 0.3
+       
+        }
+        function talker(){
+            let talk = document.getElementById("talk")
+           talk.style.display = "block"
+        }
+        function times(){
+            let modal =  document.querySelector(".modal")
+            let opac = document.getElementById("opac")
+            modal.style.display = "none"
+            clearInterval(interval,1000)
+            opac.style.opacity = 10
+        }
+        function timer(){
+            let talk = document.getElementById("talk")
+           talk.style.display = "none"
+        }
+         document.querySelector(".save").innerHTML = localStorage.getItem(cust)
+            let interval;
+        function ren(){
+            let savingsAmount = document.getElementById("amount").value 
+            let x = document.getElementById("select").selectedIndex;
+            let options = document.getElementsByTagName("option")
+            let option = options[x].text
+            let save = Number(localStorage.getItem(cust))
+            let bal = Number(localStorage.getItem(customer))
+            function clear(){
+                clearInterval(interval,1000)
+            }
+            function deduct(){
+                if((bal-Number(savingsAmount))>=600){
+                   bal -= Number(savingsAmount)
+                   save += Number(savingsAmount)
+                   localStorage.setItem(customer,bal)
+                   localStorage.setItem(cust,save)
+                   document.querySelector(".save").innerHTML = localStorage.getItem(cust)
+                   let d = new Date()
+                   let me =   document.getElementById("talk")
+                   let create = document.createElement("li")
+                   let node = document.createTextNode( d.getDate()+"/"+ d.getMonth() +"/" + d.getFullYear() +" " + d.getHours() +":" 
+                   + d.getMinutes()+":"+d.getSeconds()+ " " +savingsAmount+ "Naira")
+                   create.appendChild(node)
+                   me.appendChild(create)
+                   create.setAttribute("class","list")
+                   talker()
+                }
+                else{
+                    talker()
+                    clear()
+                    alert("Top-up account")
+                    window.location.replace("./flex2.html")
+                }
+            }
+              if(savingsAmount!=""){
+               
+                  if(option=="Daily"){
+                    if(Number(savingsAmount)>=50){
+                     interval = setInterval(deduct,3000)                                               
+                    }else{
+                        alert("Specified Amount Lower Than 50 Naira")
+                    }
+                  }
+                  else if(option=="Weekly"){
+                     if(Number(savingsAmount)>=50){
+                     interval = setInterval(deduct,6000)
+                    }else{
+                        alert("Specified Amount Lower Than 50 Naira")
+                    }
+                  }
+                  else if(option=="Monthly"){
+                     if(Number(savingsAmount)>=50){
+                     interval = setInterval(deduct,10000)
+                    }else{
+                        alert("Specified Amount Lower Than 50 Naira")
+                    }
+                  }
+            }
+            else{
+                alert("Please fill the box")
+            }
+          
+        }
+
+    </script>
+
+
+
+
+
+    <style>
+        @media(min-width: 580px){
+            .whale{width: 25rem;}
+            .dell{width: 22rem;}
+            .time{
+            position: fixed;
+            left: 20rem;
+            top: 0;
+            cursor:pointer;
+        }
+        .timex{
+            position: fixed;
+            right: 1rem;
+            top: 0;
+            cursor:pointer;
+        }
+        #talk{
+            display: none;
+            position: fixed;
+            right: 1rem;
+            top: 0;
+            padding: 1rem;
+            height: 350px;
+        }
+        }
+        
+        @media(max-width: 576px){
+        .time{
+            position: fixed;
+            right: 1rem;
+            top: 0;
+            cursor:pointer;
+        }
+        .timex{
+            position: fixed;
+            right: 1rem;
+            cursor:pointer;
+        }
+        #talk{
+            display: none;
+            position: fixed;
+            right: 0rem;
+            top: 22rem;
+            padding: 1rem;
+            width: 100%;
+        }
+        }
+        .list{
+            font-weight: bold;
+            list-style: none;
+            width: 100%;
+        }
+        
+        .modal{
+            display: none;
+            height: 350px;
+            position: fixed;
+        }
+        
+        input{
+             outline: none;
+         }
+        .fas{
+            color: #0dcaf0;
+            font-size: 5rem;
+            border: 4px solid #0dcaf0;
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            flex-direction: column;
+        }
+    </style>
+</body>
+</html>

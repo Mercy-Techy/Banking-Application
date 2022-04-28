@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+  </head>
+  <body
+    class="d-flex justify-content-center align-items-center flex-column"
+    style="height: 100vh"
+  >
+    <div class="bg-light shadow px-5 text-center py-3 whale">
+      <div class="display-6 fw-bold mb-5">Sign Up</div>
+      <form action="">
+        <label class="text-muted d-block text-start merd">Username</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Usename"
+          id="ten"
+          minlength="3"
+          maxlength="15"
+          class="py-3 mb-2 border-0 roun"
+        />
+        <label class="text-muted d-block text-start merd">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="py-3 mb-2 border-0 roun"
+        />
+        <label class="text-muted d-block text-start merd">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          id="eight"
+          class="py-3 mb-2 border-0 roun"
+        />
+        <button
+          class="btn checker btn-info text-white my-4 fw-bold bad px-5 py-3"
+          id="caller"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <style>
+      .bad {
+        border-radius: 10rem;
+      }
+      input {
+        outline: none;
+      }
+      ::placeholder {
+        font-weight: 700;
+      }
+      @media (min-width: 580px) {
+        .whale {
+          width: 30rem;
+        }
+        .roun {
+          width: 20rem;
+          padding-left: 1rem;
+          border-radius: 3rem;
+          background-color: rgb(202, 228, 238);
+        }
+        .merd {
+          margin-left: 3rem;
+        }
+      }
+      @media (max-width: 580px) {
+        .whale {
+          width: 20rem;
+          /* position: fixed; */
+        }
+        .roun {
+          width: 15rem;
+          padding-left: 1rem;
+          border-radius: 3rem;
+          background-color: rgb(202, 228, 238);
+        }
+        .merd {
+          margin-left: 1.5rem;
+        }
+      }
+    </style>
+
+    <script src="./signup.js"></script>
+  </body>
+</html>

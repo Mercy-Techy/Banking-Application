@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+</head>
+<body class="d-flex justify-content-center align-items-center" style="height:80vh">
+    <div class="bg-light p-3 whale shadow rounded">
+        <div class="display-6 fw-bold">Withdraw</div>
+        <div action="" class="my-3">
+            <h5 class="d-block fw-bold">Amount</h5>
+            <input placeholder="Enter Amount"  type="number" id="amount" class="border-0 w-75 px-2 py-3 rounded">
+            <button class="btn btn-info d-block my-2 text-light fw-bold" onclick="ran()">Submit</button>
+        </div>
+    </div>
+    
+
+    <script>
+        function ran(){
+        let dmoney = document.getElementById("amount").value
+        let nam = localStorage.getItem("presentName")
+        let customer =  nam + " " + "balance"
+        let actbalance = localStorage.getItem(customer)
+        let wmoney = document.getElementById("amount").value
+        if(wmoney!=""){
+            if(Number(wmoney)>100){
+            if(Number(wmoney)<Number(actbalance)){
+               let newBalance = Number(actbalance) - Number(wmoney)
+               localStorage.setItem(customer,newBalance)
+               alert("Transaction Successful") 
+               window.location.replace("./index.html")
+            }
+            else{
+               alert("Insufficient Balance.Please deposit")
+               window.location.replace("./deposit.html") 
+            }
+            }else{
+                alert("Specified Amount lower Than 100 Naira")
+            }
+        }
+        else{
+                alert("please fill the box")
+        }
+        }
+    </script>
+
+
+<style>
+    input{
+        outline: none;
+    }
+    @media(min-width: 580px){
+        .whale{
+             width: 24rem;
+        }
+    }
+    @media(max-width: 576px){
+        .whale{
+             width: 15rem;
+        }
+    }
+</style>
+</body>
+</html>
